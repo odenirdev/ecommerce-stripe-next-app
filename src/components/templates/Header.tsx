@@ -10,43 +10,47 @@ import Link from "next/link";
 export default function Header() {
   return (
     <header className="bg-background border-b shadow-sm">
-      <div className="wrapper flex items-center gap-8 py-6">
-        <Link href="/" className="flex items-center gap-1" prefetch={false}>
-          <span className="font-bold text-3xl tracking-tight">
-            Cosméticos&Co
-          </span>
-        </Link>
+      <div className="wrapper flex flex-col md:flex-row items-center gap-8 py-6">
+        <div className="flex items-center gap-8">
+          <Link href="/" className="flex items-center gap-1" prefetch={false}>
+            <span className="font-bold text-xl md:text-3xl tracking-tight">
+              Cosméticos&Co
+            </span>
+          </Link>
 
-        <DropdownMenu.Root>
-          <DropdownMenu.Trigger className="text-sm flex gap-1 items-center">
-            Produtos <CaretDown />
-          </DropdownMenu.Trigger>
-          <DropdownMenu.Content className="bg-white shadow-md rounded p-2">
-            <DropdownMenu.Item className="p-2 hover:bg-gray-100">
-              Item 1
-            </DropdownMenu.Item>
-            <DropdownMenu.Item className="p-2 hover:bg-gray-100">
-              Item 2
-            </DropdownMenu.Item>
-            <DropdownMenu.Item className="p-2 hover:bg-gray-100">
-              Item 3
-            </DropdownMenu.Item>
-          </DropdownMenu.Content>
-        </DropdownMenu.Root>
-
-        <div className="relative flex-1">
-          <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-          <input
-            type="search"
-            placeholder="O que está buscando hoje?"
-            className="w-full pl-10 pr-4 py-2 rounded-full bg-muted focus:outline-none focus:ring-1 focus:ring-primary"
-          />
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger className="text-[0.75rem] md:text-sm  flex gap-1 items-center">
+              Produtos <CaretDown />
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content className="bg-white shadow-md rounded p-2">
+              <DropdownMenu.Item className="p-2 hover:bg-gray-100">
+                Item 1
+              </DropdownMenu.Item>
+              <DropdownMenu.Item className="p-2 hover:bg-gray-100">
+                Item 2
+              </DropdownMenu.Item>
+              <DropdownMenu.Item className="p-2 hover:bg-gray-100">
+                Item 3
+              </DropdownMenu.Item>
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
         </div>
 
-        <Link href="/cart">
-          <ShoppingCart className="w-6 h-6" />
-          <span className="sr-only">Cart</span>
-        </Link>
+        <div className="flex items-center gap-4 flex-1">
+          <div className="relative flex-1">
+            <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <input
+              type="search"
+              placeholder="O que está buscando hoje?"
+              className="w-full pl-10 pr-4 py-2 rounded-full bg-muted focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </div>
+
+          <Link href="/cart">
+            <ShoppingCart className="w-6 h-6" />
+            <span className="sr-only">Cart</span>
+          </Link>
+        </div>
         {/* <DropdownMenu>
 		<DropdownMenuTrigger asChild>
 		  <Button variant="ghost" size="icon" className="rounded-full">

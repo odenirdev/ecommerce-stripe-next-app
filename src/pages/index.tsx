@@ -16,11 +16,26 @@ export default function Home() {
 
   return (
     <div>
-      <section className="relative h-[75vh] overflow-hidden">
-        <Slider {...settings} className="h-full">
-          <div className="h-screen bg-[url('https://production.na01.natura.com/on/demandware.static/-/Sites-NatBrazil-Library/default/dwd9983e44/Categorias/Dia%20dos%20Pais%202024/banner-animado-presentes-economia-desk.gif')] flex items-center justify-center text-white"></div>
-          <div className="h-screen bg-[url('https://production.na01.natura.com/on/demandware.static/-/Sites-NatBrazil-Library/default/dw6875b021/Categorias/Dia%20dos%20Pais%202024/presente-de-por-homem-nos-desk.jpg')] flex items-center justify-center text-white"></div>
-          <div className="h-screen bg-[url('https://production.na01.natura.com/on/demandware.static/-/Sites-NatBrazil-Library/default/dwd0be3988/Categorias/Dia%20dos%20Pais%202024/embrulha-presente-desk.jpg')] flex items-center justify-center text-white"></div>
+      <section className="relative overflow-hidden">
+        <Slider {...settings}>
+          <div>
+            <img
+              src="https://production.na01.natura.com/on/demandware.static/-/Sites-NatBrazil-Library/default/dwd9983e44/Categorias/Dia%20dos%20Pais%202024/banner-animado-presentes-economia-desk.gif"
+              alt=""
+            />
+          </div>
+          <div>
+            <img
+              src="https://production.na01.natura.com/on/demandware.static/-/Sites-NatBrazil-Library/default/dwd9983e44/Categorias/Dia%20dos%20Pais%202024/banner-animado-presentes-economia-desk.gif"
+              alt=""
+            />
+          </div>
+          <div>
+            <img
+              src="https://production.na01.natura.com/on/demandware.static/-/Sites-NatBrazil-Library/default/dwd9983e44/Categorias/Dia%20dos%20Pais%202024/banner-animado-presentes-economia-desk.gif"
+              alt=""
+            />
+          </div>
         </Slider>
       </section>
 
@@ -37,7 +52,7 @@ export default function Home() {
                 alt="Featured Product 1"
                 width={300}
                 height={300}
-                className="mb-4 aspect-square max-w-full rounded-lg object-cover"
+                className="mb-4 aspect-square max-w-full rounded-lg bg-cover"
               />
               <h3 className="mb-2 text-lg font-semibold">
                 Presente Natura Essencial Para Barbear
