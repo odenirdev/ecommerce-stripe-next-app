@@ -1,3 +1,5 @@
+import Footer from "@/components/templates/Footer";
+import Header from "@/components/templates/Header";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 
@@ -26,7 +28,11 @@ export default function App({ Component, pageProps }: AppProps) {
         fontBody.className
       )}
     >
+      <Header />
+
       <Component {...pageProps} />
+
+      <Footer />
     </div>
   );
 }
