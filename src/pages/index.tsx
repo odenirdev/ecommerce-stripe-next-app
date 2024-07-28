@@ -1,30 +1,17 @@
-import Hero from "@/components/templates/Hero";
-import HomeProducts from "@/components/templates/HomeProducts";
+import Home, { HomeProps } from "@/components/pages/Home";
 import { stripe } from "@/lib/stripe";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import Stripe from "stripe";
 
-export interface HomeProps {
-  products: {
-    id: string;
-    name: string;
-    imageUrl: string;
-    price: string;
-  }[];
+export default function HomePage(props: HomeProps) {
+  return <Home {...props} />;
 }
 
-export default function Home(props: HomeProps) {
-  return (
-    <div>
-      <Hero />
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const take = parseInt(context.query.take as string) || 4;
 
-      <HomeProducts products={props.products} />
-    </div>
-  );
-}
-
-export const getStaticProps: GetStaticProps = async () => {
   const response = await stripe.products.list({
+    limit: take,
     expand: ["data.default_price"],
   });
 
@@ -44,6 +31,5 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: { products },
-    revalidate: 60 * 60 * 2, // 2 hours
   };
 };

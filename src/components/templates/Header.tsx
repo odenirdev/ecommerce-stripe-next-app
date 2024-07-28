@@ -9,13 +9,35 @@ import {
 
 import Link from "next/link";
 import { CartContext } from "@/contexts/CartContext";
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
 
 export default function Header() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
   const { cartItems } = useContext(CartContext);
   const cartItemsCount = cartItems
     .map((item) => item.count)
     .reduce((a, b) => a + b, 0);
+
+  const handleSearchBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+
+    router.push(pathname + "?" + createQueryString("q", value));
+  };
 
   return (
     <header className="bg-background border-b shadow-sm">
@@ -52,6 +74,7 @@ export default function Header() {
               type="search"
               placeholder="O que está buscando hoje?"
               className="w-full pl-10 pr-4 py-2 rounded-full bg-muted focus:outline-none focus:ring-1 focus:ring-primary"
+              onBlur={handleSearchBlur}
             />
           </div>
 
