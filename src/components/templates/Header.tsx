@@ -1,3 +1,5 @@
+"use client";
+
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import {
   CaretDown,
@@ -6,8 +8,15 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 
 import Link from "next/link";
+import { CartContext } from "@/contexts/CartContext";
+import { useContext } from "react";
 
 export default function Header() {
+  const { cartItems } = useContext(CartContext);
+  const cartItemsCount = cartItems
+    .map((item) => item.count)
+    .reduce((a, b) => a + b, 0);
+
   return (
     <header className="bg-background border-b shadow-sm">
       <div className="wrapper flex flex-col md:flex-row items-center gap-8 py-6">
@@ -46,9 +55,13 @@ export default function Header() {
             />
           </div>
 
-          <Link href="/cart">
+          <Link href="/cart" className="relative">
             <ShoppingCart className="w-6 h-6" />
-            <span className="sr-only">Cart</span>
+            {cartItemsCount > 0 && (
+              <span className="bg-primary text-white text-[0.625rem] font-medium px-1.5 py-0.5 rounded-full absolute -top-2 -right-2 ">
+                {cartItemsCount}
+              </span>
+            )}
           </Link>
         </div>
         {/* <DropdownMenu>

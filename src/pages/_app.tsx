@@ -1,5 +1,6 @@
 import Footer from "@/components/templates/Footer";
 import Header from "@/components/templates/Header";
+import { CartProvider } from "@/contexts/CartContext";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 
@@ -28,11 +29,13 @@ export default function App({ Component, pageProps }: AppProps) {
         fontBody.className
       )}
     >
-      <Header />
+      <CartProvider>
+        <Header />
 
-      <Component {...pageProps} />
+        <Component {...pageProps} />
 
-      <Footer />
+        <Footer />
+      </CartProvider>
     </div>
   );
 }
