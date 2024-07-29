@@ -17,14 +17,15 @@ export default function Home(props: HomeProps) {
   const TAKE_NUMBER = 4;
 
   const router = useRouter();
-
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
 
   const handleNext = () => {
-    const take = parseInt(searchParams.get("take") || `${TAKE_NUMBER}`);
+    const currentParams = new URLSearchParams(window.location.search);
+    const take = parseInt(currentParams.get("take") || `${TAKE_NUMBER}`);
+    currentParams.set("take", (take + TAKE_NUMBER).toString());
 
-    router.push(`/?take=${take + TAKE_NUMBER}`, undefined, { shallow: true });
+    router.push(`/?${currentParams.toString()}`, undefined, { shallow: true });
   };
 
   return (

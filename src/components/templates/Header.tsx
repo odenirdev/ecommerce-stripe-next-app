@@ -1,10 +1,9 @@
-"use client";
-
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import {
   CaretDown,
   MagnifyingGlass,
   ShoppingCart,
+  UserCircle,
 } from "@phosphor-icons/react/dist/ssr";
 
 import Link from "next/link";
@@ -39,6 +38,17 @@ export default function Header() {
     router.push(pathname + "?" + createQueryString("q", value));
   };
 
+  const handleCategory = (category: string) => {
+    router.push(pathname + "?" + createQueryString("category", category));
+  };
+
+  const removeCategory = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("category");
+
+    router.push(pathname + "?" + params.toString());
+  };
+
   return (
     <header className="bg-background border-b shadow-sm">
       <div className="wrapper flex flex-col md:flex-row items-center gap-8 py-6">
@@ -50,18 +60,27 @@ export default function Header() {
           </Link>
 
           <DropdownMenu.Root>
-            <DropdownMenu.Trigger className="text-[0.75rem] md:text-sm  flex gap-1 items-center">
+            <DropdownMenu.Trigger className="text-[0.75rem] md:text-sm flex gap-1 items-center">
               Produtos <CaretDown />
             </DropdownMenu.Trigger>
-            <DropdownMenu.Content className="bg-white shadow-md rounded p-2">
-              <DropdownMenu.Item className="p-2 hover:bg-gray-100">
-                Item 1
+            <DropdownMenu.Content className="bg-white shadow-md rounded p-2 z-[9999]">
+              <DropdownMenu.Item
+                className="p-2 hover:bg-gray-100"
+                onClick={removeCategory}
+              >
+                Todos
               </DropdownMenu.Item>
-              <DropdownMenu.Item className="p-2 hover:bg-gray-100">
-                Item 2
+              <DropdownMenu.Item
+                className="p-2 hover:bg-gray-100"
+                onClick={() => handleCategory("feminine")}
+              >
+                Feminino
               </DropdownMenu.Item>
-              <DropdownMenu.Item className="p-2 hover:bg-gray-100">
-                Item 3
+              <DropdownMenu.Item
+                className="p-2 hover:bg-gray-100"
+                onClick={() => handleCategory("masculine")}
+              >
+                Masculino
               </DropdownMenu.Item>
             </DropdownMenu.Content>
           </DropdownMenu.Root>
@@ -78,33 +97,21 @@ export default function Header() {
             />
           </div>
 
-          <Link href="/cart" className="relative">
-            <ShoppingCart className="w-6 h-6" />
-            {cartItemsCount > 0 && (
-              <span className="bg-primary text-white text-[0.625rem] font-medium px-1.5 py-0.5 rounded-full absolute -top-2 -right-2 ">
-                {cartItemsCount}
-              </span>
-            )}
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link href="/cart" className="relative">
+              <ShoppingCart className="w-6 h-6" />
+              {cartItemsCount > 0 && (
+                <span className="bg-primary text-white text-[0.625rem] font-medium px-1.5 py-0.5 rounded-full absolute -top-2 -right-2 ">
+                  {cartItemsCount}
+                </span>
+              )}
+            </Link>
+
+            <Link href="#">
+              <UserCircle className="w-6 h-6" />
+            </Link>
+          </div>
         </div>
-        {/* <DropdownMenu>
-		<DropdownMenuTrigger asChild>
-		  <Button variant="ghost" size="icon" className="rounded-full">
-			<Avatar>
-			  <AvatarImage src="/placeholder-user.jpg" />
-			  <AvatarFallback>JD</AvatarFallback>
-			</Avatar>
-			<span className="sr-only">User Menu</span>
-		  </Button>
-		</DropdownMenuTrigger>
-		<DropdownMenuContent align="end">
-		  <DropdownMenuLabel>My Account</DropdownMenuLabel>
-		  <DropdownMenuSeparator />
-		  <DropdownMenuItem>Profile</DropdownMenuItem>
-		  <DropdownMenuItem>Settings</DropdownMenuItem>
-		  <DropdownMenuItem>Logout</DropdownMenuItem>
-		</DropdownMenuContent>
-	  </DropdownMenu> */}
       </div>
     </header>
   );

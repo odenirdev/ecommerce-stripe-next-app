@@ -9,13 +9,20 @@ export default function HomePage(props: HomeProps) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const take = parseInt(context.query.take as string) || 4;
+  const category = (context.query.category as string) || "";
 
   const response = await stripe.products.list({
-    limit: take,
+    limit: 9999,
     expand: ["data.default_price"],
   });
 
-  const products = response.data.map((product) => {
+  const filteredProducts = response.data.filter((product) => {
+    if (!category) return true;
+
+    return product.metadata.category === category;
+  });
+
+  const products = filteredProducts.slice(0, take).map((product) => {
     const price = product.default_price as Stripe.Price;
 
     return {
