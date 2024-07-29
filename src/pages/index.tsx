@@ -1,10 +1,18 @@
 import Home, { HomeProps } from "@/components/pages/Home";
 import { stripe } from "@/lib/stripe";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import Stripe from "stripe";
 
 export default function HomePage(props: HomeProps) {
-  return <Home {...props} />;
+  return (
+    <>
+      <Head>
+        <title>Página inicial - Cosméticos&Co</title>
+      </Head>
+      <Home {...props} />
+    </>
+  );
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

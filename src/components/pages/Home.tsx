@@ -1,4 +1,4 @@
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import ProductCard from "../organisms/ProductCard";
 import Hero from "../templates/Hero";
 import { useRouter } from "next/router";
@@ -19,13 +19,16 @@ export default function Home(props: HomeProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
+  const pathname = usePathname();
 
   const handleNext = () => {
     const currentParams = new URLSearchParams(window.location.search);
     const take = parseInt(currentParams.get("take") || `${TAKE_NUMBER}`);
     currentParams.set("take", (take + TAKE_NUMBER).toString());
 
-    router.push(`/?${currentParams.toString()}`, undefined, { shallow: true });
+    router.push(pathname + "?" + currentParams.toString(), undefined, {
+      scroll: false,
+    });
   };
 
   return (
