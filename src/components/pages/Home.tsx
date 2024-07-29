@@ -9,6 +9,7 @@ export interface HomeProps {
     name: string;
     imageUrl: string;
     price: string;
+    star: number;
   }[];
 }
 
@@ -23,7 +24,7 @@ export default function Home(props: HomeProps) {
   const handleNext = () => {
     const take = parseInt(searchParams.get("take") || `${TAKE_NUMBER}`);
 
-    router.push(`/?take=${take + TAKE_NUMBER}`);
+    router.push(`/?take=${take + TAKE_NUMBER}`, undefined, { shallow: true });
   };
 
   return (
@@ -51,6 +52,7 @@ export default function Home(props: HomeProps) {
                     name: product.name,
                     imageUrl: product.imageUrl,
                     price: product.price,
+                    star: product.star,
                   }}
                 />
               ))}

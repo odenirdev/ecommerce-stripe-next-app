@@ -2,16 +2,18 @@ import Link from "next/link";
 import { PlusCircle, Star } from "@phosphor-icons/react/dist/ssr";
 import { useContext } from "react";
 import { CartContext } from "@/contexts/CartContext";
+import Rate from "../molecules/Rate";
 
 export type ProductCardProps = {
   id: string;
   name: string;
   imageUrl: string;
   price: string;
+  star: number;
 };
 
 export default function ProductCard(props: ProductCardProps) {
-  const { id, name, imageUrl, price } = props;
+  const { id, name, imageUrl, price, star } = props;
 
   const { addToCart } = useContext(CartContext);
 
@@ -30,18 +32,10 @@ export default function ProductCard(props: ProductCardProps) {
       />
       <h3 className="mb-2 text-lg font-semibold">{name}</h3>
       <div className="flex items-center gap-2 mb-2">
-        <Star weight="fill" className="w-4 h-4 fill-primary" />
-        <Star weight="fill" className="w-4 h-4 fill-primary" />
-        <Star weight="fill" className="w-4 h-4 fill-primary" />
-        <Star
-          weight="fill"
-          className="w-4 h-4 fill-muted stroke-muted-foreground"
-        />
-        <Star
-          weight="fill"
-          className="w-4 h-4 fill-muted stroke-muted-foreground"
-        />
-        <span className="text-[0.75rem] text-muted-foreground">3.7/5</span>
+        <Rate value={star} />
+        <span className="text-[0.75rem] text-muted-foreground">
+          {star.toFixed(1)}/5
+        </span>
       </div>
 
       <p className="mb-2 text-muted-foreground">{price}</p>

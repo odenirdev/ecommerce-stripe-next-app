@@ -26,6 +26,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         style: "currency",
         currency: "BRL",
       }).format((price.unit_amount as number) / 100),
+      star: product.metadata.star ? parseFloat(product.metadata.star) : 0,
     };
   });
 
