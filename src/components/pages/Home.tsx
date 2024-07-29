@@ -41,7 +41,7 @@ export default function Home(props: HomeProps) {
             descubra as fragrâncias que combinam com você
           </h2>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {props.products
               .filter((product) => {
                 if (!query) return true;
@@ -49,18 +49,19 @@ export default function Home(props: HomeProps) {
                 return product.name.toLowerCase().includes(query.toLowerCase());
               })
               .map((product) => (
-                <ProductCard
-                  {...{
-                    key: product.id,
-                    id: product.id,
-                    name: product.name,
-                    imageUrl: product.imageUrl,
-                    price: product.price,
-                    star: product.star,
-                  }}
-                />
+                <li key={product.id}>
+                  <ProductCard
+                    {...{
+                      id: product.id,
+                      name: product.name,
+                      imageUrl: product.imageUrl,
+                      price: product.price,
+                      star: product.star,
+                    }}
+                  />
+                </li>
               ))}
-          </div>
+          </ul>
 
           <div className="flex justify-center py-8">
             <button

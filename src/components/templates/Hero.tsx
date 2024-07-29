@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Slider, { Settings as SlickSettings } from "react-slick";
 
 export default function Hero() {
@@ -15,21 +16,27 @@ export default function Hero() {
     <section className="relative overflow-hidden">
       <Slider {...settings}>
         <div>
-          <img
+          <Image
             src="https://production.na01.natura.com/on/demandware.static/-/Sites-NatBrazil-Library/default/dwd9983e44/Categorias/Dia%20dos%20Pais%202024/banner-animado-presentes-economia-desk.gif"
             alt=""
+            width={1920}
+            height={1080}
           />
         </div>
         <div>
-          <img
+          <Image
             src="https://production.na01.natura.com/on/demandware.static/-/Sites-NatBrazil-Library/default/dwd9983e44/Categorias/Dia%20dos%20Pais%202024/banner-animado-presentes-economia-desk.gif"
             alt=""
+            width={1920}
+            height={1080}
           />
         </div>
         <div>
-          <img
+          <Image
             src="https://production.na01.natura.com/on/demandware.static/-/Sites-NatBrazil-Library/default/dwd9983e44/Categorias/Dia%20dos%20Pais%202024/banner-animado-presentes-economia-desk.gif"
             alt=""
+            width={1920}
+            height={1080}
           />
         </div>
       </Slider>

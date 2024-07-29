@@ -1,5 +1,6 @@
 import { CartContext } from "@/contexts/CartContext";
 import { Minus, Plus, X } from "@phosphor-icons/react/dist/ssr";
+import Image from "next/image";
 import { useContext } from "react";
 
 export type CheckoutProductCardProps = {
@@ -25,7 +26,7 @@ export default function CheckoutProductCard(props: CheckoutProductCardProps) {
 
   return (
     <div className="grid grid-cols-[100px_1fr_auto] items-center gap-4">
-      <img
+      <Image
         src={imageUrl}
         width="100"
         height="100"
@@ -34,6 +35,7 @@ export default function CheckoutProductCard(props: CheckoutProductCardProps) {
           aspectRatio: "100 / 100",
           objectFit: "cover",
         }}
+		alt=""
       />
       <div className="grid gap-1">
         <h3 className="font-semibold">{name}</h3>

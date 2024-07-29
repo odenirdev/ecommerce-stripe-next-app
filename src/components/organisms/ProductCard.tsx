@@ -3,6 +3,7 @@ import { PlusCircle, Star } from "@phosphor-icons/react/dist/ssr";
 import { useContext } from "react";
 import { CartContext } from "@/contexts/CartContext";
 import Rate from "../molecules/Rate";
+import Image from "next/image";
 
 export type ProductCardProps = {
   id: string;
@@ -23,12 +24,12 @@ export default function ProductCard(props: ProductCardProps) {
 
   return (
     <div className="rounded-lg bg-card p-4 shadow-md">
-      <img
+      <Image
         src={imageUrl}
-        alt="Featured Product 1"
         width={300}
         height={300}
-        className="mb-4 aspect-square w-full rounded-lg bg-cover "
+        className="mb-4 aspect-square w-full rounded-lg bg-cover"
+        alt=""
       />
       <h3 className="mb-2 text-lg font-semibold">{name}</h3>
       <div className="flex items-center gap-2 mb-2">

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="bg-muted p-4 md:py-6 w-full">
@@ -6,7 +8,13 @@ export default function Footer() {
           &copy; 2024 Cosméticos&Co. Todos os direitos reservados.
         </p>
 
-        <img src="/powered-stripe.png" alt="" className="w-96" />
+        <Image
+          width={200}
+          height={200}
+          src="/powered-stripe.png"
+          alt=""
+          className="w-96"
+        />
       </div>
     </footer>
   );
