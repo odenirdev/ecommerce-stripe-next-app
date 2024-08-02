@@ -1,6 +1,9 @@
 import { CartContext } from "@/contexts/CartContext";
 import useApi from "@/hooks/useApi";
 import { useContext } from "react";
+import Button from "../atoms/Button";
+import Typography from "../atoms/Typography";
+import Input from "../atoms/Input";
 
 export default function CheckoutSummary() {
   const { cartItems } = useContext(CartContext);
@@ -38,23 +41,21 @@ export default function CheckoutSummary() {
       data-v0-t="card"
     >
       <div className="flex flex-col space-y-1.5 p-6">
-        <h3 className="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">
-          Sumário
-        </h3>
+        <Typography variant="h3">Sumário</Typography>
       </div>
       <div className="p-6 grid gap-4">
         <div className="flex justify-between">
-          <p>Subtotal</p>
-          <p>
+          <Typography>Subtotal</Typography>
+          <Typography>
             {new Intl.NumberFormat("pt-BR", {
               style: "currency",
               currency: "BRL",
             }).format(subtotal)}
-          </p>
+          </Typography>
         </div>
         <div className="flex justify-between">
-          <p>Frete</p>
-          <p>Gratuito</p>
+          <Typography>Frete</Typography>
+          <Typography>Gratuito</Typography>
         </div>
 
         <div
@@ -63,35 +64,23 @@ export default function CheckoutSummary() {
           className="shrink-0 bg-border h-[1px] w-full"
         ></div>
         <div className="flex justify-between items-center">
-          <p className="font-semibold">Total</p>
-          <p className="text-2xl font-bold">
+          <Typography className="font-semibold">Total</Typography>
+          <Typography className="text-2xl font-bold">
             {new Intl.NumberFormat("pt-BR", {
               style: "currency",
               currency: "BRL",
             }).format(total)}
-          </p>
+          </Typography>
         </div>
 
         <div className="flex justify-between">
           <div className="flex items-center gap-2">
-            <input
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              placeholder="Cupom promocional"
-              type="text"
-              value=""
-            />
-            <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
-              Aplicar
-            </button>
+            <Input placeholder="Cupom promocional" type="text" value="" />
+            <Button variant="secondary"> Aplicar</Button>
           </div>
         </div>
 
-        <button
-          onClick={handleCheckout}
-          className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-md px-8"
-        >
-          Finalizar compra
-        </button>
+        <Button onClick={handleCheckout}>Finalizar compra</Button>
       </div>
     </div>
   );

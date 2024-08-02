@@ -2,6 +2,8 @@ import { CartContext } from "@/contexts/CartContext";
 import { Minus, Plus, X } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { useContext } from "react";
+import Button from "../atoms/Button";
+import Typography from "../atoms/Typography";
 
 export type CheckoutProductCardProps = {
   id: string;
@@ -35,33 +37,32 @@ export default function CheckoutProductCard(props: CheckoutProductCardProps) {
           aspectRatio: "100 / 100",
           objectFit: "cover",
         }}
-		alt=""
+        alt=""
       />
-      <div className="grid gap-1">
-        <h3 className="font-semibold">{name}</h3>
-        <p className="text-muted-foreground">{price}</p>
+      <div className="space-y-1">
+        <Typography variant="h3" className="font-semibold">
+          {name}
+        </Typography>
+        <Typography className="text-muted-foreground">{price}</Typography>
       </div>
-      <div className="flex items-center gap-2">
-        <button
-          className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"
+
+      <div className="flex items-center gap-4">
+        <Button
+          variant="secondary"
           onClick={handleDecrement}
           disabled={props.count === 1}
         >
           <Minus />
-        </button>
-        <span className="text-base font-medium">{props.count}</span>
-        <button
-          onClick={handleIncrement}
-          className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"
-        >
+        </Button>
+        <Typography as="span" className="text-base font-medium">
+          {props.count}
+        </Typography>
+        <Button variant="secondary" onClick={handleIncrement}>
           <Plus />
-        </button>
-        <button
-          onClick={() => removeFromCart(id)}
-          className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10"
-        >
+        </Button>
+        <Button variant="secondary" onClick={() => removeFromCart(id)}>
           <X />
-        </button>
+        </Button>
       </div>
     </div>
   );

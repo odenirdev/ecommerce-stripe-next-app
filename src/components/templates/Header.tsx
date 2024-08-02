@@ -11,6 +11,8 @@ import { CartContext } from "@/contexts/CartContext";
 import { useCallback, useContext } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
+import Input from "../atoms/Input";
+import Typography from "../atoms/Typography";
 
 export default function Header() {
   const router = useRouter();
@@ -54,9 +56,7 @@ export default function Header() {
       <div className="wrapper flex flex-col md:flex-row items-center gap-8 py-6">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-1" prefetch={false}>
-            <span className="font-bold text-xl md:text-3xl tracking-tight">
-              Cosméticos&Co
-            </span>
+            <Typography variant="h1">Cosméticos&Co</Typography>
           </Link>
 
           <DropdownMenu.Root>
@@ -87,23 +87,23 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-4 flex-1">
-          <div className="relative flex-1">
-            <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <input
-              type="search"
-              placeholder="O que está buscando hoje?"
-              className="w-full pl-10 pr-4 py-2 rounded-full bg-muted focus:outline-none focus:ring-1 focus:ring-primary"
-              onBlur={handleSearchBlur}
-            />
-          </div>
+          <Input
+            type="search"
+            placeholder="O que está buscando hoje?"
+            className="w-full"
+            onBlur={handleSearchBlur}
+          />
 
           <div className="flex items-center gap-4">
             <Link href="/cart" className="relative">
               <ShoppingCart className="w-6 h-6" />
               {cartItemsCount > 0 && (
-                <span className="bg-primary text-white text-[0.625rem] font-medium px-1.5 py-0.5 rounded-full absolute -top-2 -right-2 ">
+                <Typography
+                  as="span"
+                  className="bg-primary text-white text-[0.625rem] font-medium px-1.5 py-0.5 rounded-full absolute -top-2 -right-2 "
+                >
                   {cartItemsCount}
-                </span>
+                </Typography>
               )}
             </Link>
 

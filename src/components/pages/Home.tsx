@@ -2,6 +2,8 @@ import { usePathname, useSearchParams } from "next/navigation";
 import ProductCard from "../organisms/ProductCard";
 import Hero from "../templates/Hero";
 import { useRouter } from "next/router";
+import Button from "../atoms/Button";
+import Typography from "../atoms/Typography";
 
 export interface HomeProps {
   products: {
@@ -36,10 +38,10 @@ export default function Home(props: HomeProps) {
       <Hero />
 
       <section className="py-12 md:py-18">
-        <div className="wrapper">
-          <h2 className="mb-8 text-3xl font-bold tracking-tight md:text-4xl">
+        <div className="wrapper space-y-4">
+          <Typography variant="h2">
             descubra as fragrâncias que combinam com você
-          </h2>
+          </Typography>
 
           <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {props.products
@@ -64,12 +66,9 @@ export default function Home(props: HomeProps) {
           </ul>
 
           <div className="flex justify-center py-8">
-            <button
-              onClick={handleNext}
-              className="mx-auto inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-8 py-2"
-            >
+            <Button onClick={handleNext} variant="secondary">
               Carregar outros
-            </button>
+            </Button>
           </div>
         </div>
       </section>

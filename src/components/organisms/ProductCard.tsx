@@ -4,6 +4,8 @@ import { useContext } from "react";
 import { CartContext } from "@/contexts/CartContext";
 import Rate from "../molecules/Rate";
 import Image from "next/image";
+import Button from "../atoms/Button";
+import Typography from "../atoms/Typography";
 
 export type ProductCardProps = {
   id: string;
@@ -31,12 +33,14 @@ export default function ProductCard(props: ProductCardProps) {
         className="mb-4 aspect-square w-full rounded-lg bg-cover"
         alt=""
       />
-      <h3 className="mb-2 text-lg font-semibold">{name}</h3>
+      <Typography variant="h3" className="mb-2 text-lg font-semibold">
+        {name}
+      </Typography>
       <div className="flex items-center gap-2 mb-2">
         <Rate value={star} />
-        <span className="text-[0.75rem] text-muted-foreground">
+        <Typography as="span" className="text-[0.75rem] text-muted-foreground">
           {star.toFixed(1)}/5
-        </span>
+        </Typography>
       </div>
 
       <p className="mb-2 text-muted-foreground">{price}</p>
@@ -45,13 +49,10 @@ export default function ProductCard(props: ProductCardProps) {
         <span className="line-through">R$99.99</span>{" "}
         <span className="text-red-500 font-bold">R$79.99</span> (20% off)
       </p> */}
-      <button
-        className="w-full inline-flex h-9 items-center justify-center rounded-full bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus:outline-none focus:ring-1 focus:ring-primary-foreground focus:ring-offset-2"
-        onClick={handleAddToCart}
-      >
+      <Button onClick={handleAddToCart} className="w-full">
         <PlusCircle className="w-4 h-4 mr-1" />
         Eu quero
-      </button>
+      </Button>
     </div>
   );
 }
