@@ -27,7 +27,7 @@ export default function CheckoutProductCard(props: CheckoutProductCardProps) {
   };
 
   return (
-    <div className="grid grid-cols-[100px_1fr_auto] items-center gap-4">
+    <div className="grid grid-cols-1 lg:grid-cols-[100px_1fr_auto] items-center gap-4">
       <Image
         src={imageUrl}
         width="100"
@@ -46,7 +46,7 @@ export default function CheckoutProductCard(props: CheckoutProductCardProps) {
         <Typography className="text-muted-foreground">{price}</Typography>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center justify-center gap-4">
         <Button
           variant="secondary"
           onClick={handleDecrement}

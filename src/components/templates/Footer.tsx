@@ -4,9 +4,9 @@ import Typography from "../atoms/Typography";
 export default function Footer() {
   return (
     <footer className="bg-muted p-4 md:py-6 w-full">
-      <div className="container max-w-7xl flex items-center justify-between">
+      <div className="container max-w-7xl flex flex-col md:flex-row items-center justify-between">
         <Typography className="text-xs text-muted-foreground">
-          &coTypographyy; 2024 Cosméticos&Co. Todos os direitos reservados.
+          &copy; 2024 Cosméticos&Co. Todos os direitos reservados.
         </Typography>
 
         <Image
